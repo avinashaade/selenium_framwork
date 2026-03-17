@@ -17,6 +17,7 @@ public class HomePage {
     By email = By.id("email");
     By countryDropdown = By.id("country");
 
+
     // Actions
     public void openSite() {
         driver.get("https://testautomationpractice.blogspot.com/");

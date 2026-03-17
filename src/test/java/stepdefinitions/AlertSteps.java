@@ -3,18 +3,11 @@ package stepdefinitions;
 import hooks.Hooks;
 import io.cucumber.java.en.*;
 import org.testng.Assert;
-import pages.HomePage;
 import pages.AlertPage;
 
 public class AlertSteps {
 
-    HomePage home = new HomePage(Hooks.driver);
     AlertPage alertPage = new AlertPage(Hooks.driver);
-
-    @Given("User launches the browser")
-    public void user_launches_the_browser() {
-        home.openSite();
-    }
 
     @When("User clicks on {string} button")
     public void user_clicks_on_button(String button) {

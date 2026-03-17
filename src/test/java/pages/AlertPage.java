@@ -15,7 +15,7 @@ public class AlertPage {
         this.driver = driver;
     }
 
-    // ✅ Correct Locators
+
     By simpleAlertBtn = By.xpath("//button[text()='Simple Alert']");
     By confirmAlertBtn = By.xpath("//button[text()='Confirmation Alert']");
     By promptAlertBtn = By.xpath("//button[text()='Prompt Alert']");

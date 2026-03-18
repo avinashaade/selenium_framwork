@@ -1,16 +1,19 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
+import hooks.Hooks;
+import io.cucumber.java.en.*;
 import org.testng.Assert;
 import pages.HomePage;
-import hooks.Hooks;
 
 public class DropdownSteps {
 
-    HomePage home = new HomePage(Hooks.driver);
+    HomePage home;
 
-    @When("user selects country {string}")
+    public DropdownSteps(){
+        home = new HomePage(Hooks.driver);
+    }
+
+    @When("User selects country {string}")
     public void user_selects_country(String country) {
         home.selectCountry(country);
     }

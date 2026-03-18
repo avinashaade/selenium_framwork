@@ -7,7 +7,11 @@ import pages.DragDropPage;
 
 public class DragDropSteps {
 
-    DragDropPage dragDropPage = new DragDropPage(Hooks.driver);
+    DragDropPage dragDropPage;
+
+    public DragDropSteps(){
+        dragDropPage = new DragDropPage(Hooks.driver);
+    }
 
     @When("User performs drag and drop")
     public void user_performs_drag_and_drop() {

@@ -1,26 +1,35 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
-import pages.HomePage;
 import hooks.Hooks;
+import io.cucumber.java.en.*;
+import org.testng.Assert;
+import pages.HomePage;
 
 public class FormSteps {
 
-    HomePage home = new HomePage(Hooks.driver);
+    HomePage home;
 
-    @Given("user opens website")
-    public void openWebsite() {
-        home.openSite();
+    public FormSteps(){
+        home = new HomePage(Hooks.driver);
     }
 
-    @When("user enters name {string}")
+    @When("User enters name {string}")
     public void enterName(String name) {
         home.enterName(name);
     }
 
-    @When("user enters email {string}")
+    @When("User enters email {string}")
     public void enterEmail(String email) {
         home.enterEmail(email);
+    }
+
+    @Then("Name should be {string}")
+    public void validateName(String expected) {
+        Assert.assertEquals(home.getEnteredName(), expected);
+    }
+
+    @Then("Email should be {string}")
+    public void validateEmail(String expected) {
+        Assert.assertEquals(home.getEnteredEmail(), expected);
     }
 }

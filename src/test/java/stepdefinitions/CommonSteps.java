@@ -6,10 +6,14 @@ import pages.HomePage;
 
 public class CommonSteps {
 
-    HomePage home = new HomePage(Hooks.driver);
+    HomePage home;
 
-    @Given("User launches the browser")
-    public void user_launches_the_browser() {
+    public CommonSteps(){
+        home = new HomePage(Hooks.driver);
+    }
+
+    @Given("User opens the application")
+    public void user_opens_the_application() {
         home.openSite();
     }
 }

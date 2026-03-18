@@ -1,63 +1,53 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
 import java.time.Duration;
 
-public class AlertPage {
-
-    WebDriver driver;
+public class AlertPage extends BasePage {
 
     public AlertPage(WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
-
 
     By simpleAlertBtn = By.xpath("//button[text()='Simple Alert']");
     By confirmAlertBtn = By.xpath("//button[text()='Confirmation Alert']");
     By promptAlertBtn = By.xpath("//button[text()='Prompt Alert']");
     By resultText = By.id("demo");
 
-    // Actions
     public void clickSimpleAlert(){
-        driver.findElement(simpleAlertBtn).click();
+        click(simpleAlertBtn);
     }
 
     public void clickConfirmAlert(){
-        driver.findElement(confirmAlertBtn).click();
+        click(confirmAlertBtn);
     }
 
     public void clickPromptAlert(){
-        driver.findElement(promptAlertBtn).click();
+        click(promptAlertBtn);
     }
 
-    // Alert handling
+    public Alert waitForAlert(){
+        return wait.until(ExpectedConditions.alertIsPresent());
+    }
+
     public String getAlertText(){
-        return driver.switchTo().alert().getText();
+        return waitForAlert().getText();
     }
 
     public void acceptAlert(){
-        driver.switchTo().alert().accept();
+        waitForAlert().accept();
     }
 
     public void dismissAlert(){
-        driver.switchTo().alert().dismiss();
+        waitForAlert().dismiss();
     }
 
     public void enterTextInAlert(String text){
-        driver.switchTo().alert().sendKeys(text);
+        waitForAlert().sendKeys(text);
     }
 
-
     public String getResultMessage(){
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        return wait.until(
-                ExpectedConditions.visibilityOfElementLocated(resultText)
-        ).getText();
+        return getText(resultText);
     }
 }

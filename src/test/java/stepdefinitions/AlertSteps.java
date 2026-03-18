@@ -7,7 +7,11 @@ import pages.AlertPage;
 
 public class AlertSteps {
 
-    AlertPage alertPage = new AlertPage(Hooks.driver);
+    AlertPage alertPage;
+
+    public AlertSteps(){
+        alertPage = new AlertPage(Hooks.driver);
+    }
 
     @When("User clicks on {string} button")
     public void user_clicks_on_button(String button) {
@@ -29,8 +33,7 @@ public class AlertSteps {
 
     @Then("Alert should be displayed")
     public void alert_should_be_displayed() {
-        String text = alertPage.getAlertText();
-        Assert.assertTrue(text != null && !text.isEmpty());
+        Assert.assertTrue(alertPage.getAlertText().length() > 0);
     }
 
     @Then("User should see alert message {string}")

@@ -12,7 +12,7 @@ import org.testng.annotations.DataProvider;
                 "html:target/cucumber-report.html",
                 "json:target/cucumber.json"
         }
-        // ❌ remove tags for now if nothing is running
+
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {

@@ -30,3 +30,4 @@ public class DragDropPage extends BasePage {
         return getText(target);
     }
 }
+

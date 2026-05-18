@@ -33,7 +33,7 @@ public class AlertSteps {
 
     @Then("Alert should be displayed")
     public void alert_should_be_displayed() {
-        Assert.assertTrue(alertPage.getAlertText().length() > 0);
+        Assert.assertFalse(alertPage.getAlertText().isEmpty());
     }
 
     @Then("User should see alert message {string}")

@@ -1,11 +1,11 @@
 package hooks;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import utils.ConfigReader;
+import utils.DriverFactory;
 
 public class Hooks {
 
@@ -14,24 +14,29 @@ public class Hooks {
     @Before
     public void setup() {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+        String browser = ConfigReader.getProperty("browser");
 
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+        driver = DriverFactory.initDriver(browser);
+
+        driver.get(ConfigReader.getProperty("url"));
     }
 
     @After
     public void tearDown(Scenario scenario) {
 
         if (scenario.isFailed()) {
+
             TakesScreenshot ts = (TakesScreenshot) driver;
-            byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failure Screenshot");
+
+            byte[] screenshot =
+                    ts.getScreenshotAs(OutputType.BYTES);
+
+            scenario.attach(
+                    screenshot,
+                    "image/png",
+                    "Failure Screenshot");
         }
 
-        driver.quit();
+        DriverFactory.quitDriver();
     }
 }
